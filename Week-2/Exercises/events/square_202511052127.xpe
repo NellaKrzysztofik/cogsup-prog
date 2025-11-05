@@ -1,0 +1,18 @@
+#Expyriment 1.0.0 (Python 3.12.12), .xpe-file, coding: UTF-8
+#date: Wed Nov 05 2025 21:27:41
+#sha1: 36ad20
+#modules: 
+#display: size=(800, 600), window_mode=False, opengl=2
+#os: uname_result(system='Darwin', node='Nellas-MacBook-Pro-2.local', release='24.0.0', version='Darwin Kernel Version 24.0.0: Mon Aug 12 20:49:48 PDT 2024; root:xnu-11215.1.10~2/RELEASE_ARM64_T8103', machine='arm64')
+Time,Type,Event,Value,Detail,Detail2
+6308,stderr,received,'Exception ignored in: <function Visual.__del__ at 0x122639080>'
+6308,stderr,received,'Traceback (most recent call last):'
+6308,stderr,received,'  File "/Users/nellakrzysztofik/miniconda3/envs/cogsup-prog/lib/python3.12/site-packages/expyriment/stimuli/_visual.py", line 266, in __del__'
+6309,stderr,received,'    if self._compression_filename is not None:'
+6309,stderr,received,'       ^^^^^^^^^^^^^^^^^^^^^^^^^^'
+6309,stderr,received,"AttributeError: 'Rectangle' object has no attribute '_compression_filename'"
+6309,stderr,received,'Traceback (most recent call last):'
+6309,stderr,received,'  File "/Users/nellakrzysztofik/Documents/Sorbonne/NCIA/Semester_1/experimental_approach/programming/cogsup-prog/Week-2/Exercises/square.py", line 14, in <module>'
+6309,stderr,received,'    rect = stimuli.Rectangle(radius=50)'
+6309,stderr,received,'           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
+6309,stderr,received,"TypeError: Rectangle.__init__() got an unexpected keyword argument 'radius'"

@@ -1,0 +1,28 @@
+#Expyriment 1.0.0 (Python 3.12.12), .xpe-file, coding: UTF-8
+#date: Wed Nov 05 2025 21:28:41
+#sha1: d5433f
+#modules: 
+#display: size=(800, 600), window_mode=False, opengl=2
+#os: uname_result(system='Darwin', node='Nellas-MacBook-Pro-2.local', release='24.0.0', version='Darwin Kernel Version 24.0.0: Mon Aug 12 20:49:48 PDT 2024; root:xnu-11215.1.10~2/RELEASE_ARM64_T8103', machine='arm64')
+Time,Type,Event,Value,Detail,Detail2
+27848,design,log,
+#design: #exp: Circle
+#design: block_cnt,block_id,trial_cnt,trial_id
+27848,design,logged,
+27848,Experiment,started
+27862,Stimulus,presented,0
+28364,stderr,received,'Traceback (most recent call last):'
+28364,stderr,received,'  File "/Users/nellakrzysztofik/Documents/Sorbonne/NCIA/Semester_1/experimental_approach/programming/cogsup-prog/Week-2/Exercises/square.py", line 26, in <module>'
+28365,stderr,received,'    rect.present(clear=True, update=True)'
+28365,stderr,received,'  File "/Users/nellakrzysztofik/miniconda3/envs/cogsup-prog/lib/python3.12/site-packages/expyriment/stimuli/_visual.py", line 1171, in present'
+28366,stderr,received,'    self.preload(inhibit_ogl_compress=True)'
+28366,stderr,received,'  File "/Users/nellakrzysztofik/miniconda3/envs/cogsup-prog/lib/python3.12/site-packages/expyriment/stimuli/_visual.py", line 1059, in preload'
+28366,stderr,received,'    self._get_surface(),'
+28366,stderr,received,'    ^^^^^^^^^^^^^^^^^^^'
+28367,stderr,received,'  File "/Users/nellakrzysztofik/miniconda3/envs/cogsup-prog/lib/python3.12/site-packages/expyriment/stimuli/_visual.py", line 490, in _get_surface'
+28367,stderr,received,'    tmp = self._create_surface()'
+28367,stderr,received,'          ^^^^^^^^^^^^^^^^^^^^^^'
+28367,stderr,received,'  File "/Users/nellakrzysztofik/miniconda3/envs/cogsup-prog/lib/python3.12/site-packages/expyriment/stimuli/_rectangle.py", line 237, in _create_surface'
+28367,stderr,received,'    surface = pygame.surface.Surface('
+28367,stderr,received,'              ^^^^^^^^^^^^^^^^^^^^^^^'
+28367,stderr,received,'ValueError: size needs to be (number width, number height)'

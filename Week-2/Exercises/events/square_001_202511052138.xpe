@@ -1,0 +1,17 @@
+#Expyriment 1.0.0 (Python 3.12.12), .xpe-file, coding: UTF-8
+#date: Wed Nov 05 2025 21:38:40
+#sha1: ecb24f
+#modules: 
+#display: size=(800, 600), window_mode=False, opengl=2
+#os: uname_result(system='Darwin', node='Nellas-MacBook-Pro-2.local', release='24.0.0', version='Darwin Kernel Version 24.0.0: Mon Aug 12 20:49:48 PDT 2024; root:xnu-11215.1.10~2/RELEASE_ARM64_T8103', machine='arm64')
+Time,Type,Event,Value,Detail,Detail2
+16410,design,log,
+#design: #exp: Rectangle
+#design: block_cnt,block_id,trial_cnt,trial_id
+16410,design,logged,
+16410,Experiment,started
+16415,Stimulus,presented,0
+16416,stderr,received,'Traceback (most recent call last):'
+16416,stderr,received,'  File "/Users/nellakrzysztofik/Documents/Sorbonne/NCIA/Semester_1/experimental_approach/programming/cogsup-prog/Week-2/Exercises/square.py", line 15, in <module>'
+16416,stderr,received,'    rect.present(clear=False, update=True, colour = None)'
+16417,stderr,received,"TypeError: Visual.present() got an unexpected keyword argument 'colour'"
