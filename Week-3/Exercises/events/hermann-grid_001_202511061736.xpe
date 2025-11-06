@@ -1,0 +1,17 @@
+#Expyriment 1.0.0 (Python 3.12.12), .xpe-file, coding: UTF-8
+#date: Thu Nov 06 2025 17:36:49
+#sha1: 37bff7
+#modules: 
+#display: size=(800, 600), window_mode=False, opengl=2
+#os: uname_result(system='Darwin', node='Nellas-MacBook-Pro-2.local', release='24.0.0', version='Darwin Kernel Version 24.0.0: Mon Aug 12 20:49:48 PDT 2024; root:xnu-11215.1.10~2/RELEASE_ARM64_T8103', machine='arm64')
+Time,Type,Event,Value,Detail,Detail2
+12798,design,log,
+#design: #exp: hermann grid
+#design: block_cnt,block_id,trial_cnt,trial_id
+12799,design,logged,
+12799,Experiment,started
+12800,stderr,received,'Traceback (most recent call last):'
+12800,stderr,received,'  File "/Users/nellakrzysztofik/Documents/Sorbonne/NCIA/Semester_1/experimental_approach/programming/cogsup-prog/Week-3/Exercises/hermann-grid.py", line 25, in <module>'
+12801,stderr,received,'    for square in squares:'
+12801,stderr,received,'                  ^^^^^^^'
+12801,stderr,received,"NameError: name 'squares' is not defined. Did you mean: 'square'?"
