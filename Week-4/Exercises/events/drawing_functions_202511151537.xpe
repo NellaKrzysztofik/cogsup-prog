@@ -1,0 +1,29 @@
+#Expyriment 1.0.0 (Python 3.12.12), .xpe-file, coding: UTF-8
+#date: Sat Nov 15 2025 15:37:37
+#sha1: 325307
+#modules: 
+#display: size=(800, 600), window_mode=True, opengl=2
+#os: uname_result(system='Darwin', node='Nellas-MacBook-Pro-2.local', release='24.0.0', version='Darwin Kernel Version 24.0.0: Mon Aug 12 20:49:48 PDT 2024; root:xnu-11215.1.10~2/RELEASE_ARM64_T8103', machine='arm64')
+Time,Type,Event,Value,Detail,Detail2
+992,Stimulus,presented,0
+1007,Stimulus,presented,1
+9327,Stimulus,presented,0
+9340,Stimulus,presented,2
+17661,Stimulus,presented,0
+17673,Stimulus,presented,3
+25995,Stimulus,presented,0
+26007,Stimulus,presented,4
+34331,Stimulus,presented,0
+34342,Stimulus,presented,5
+42664,Stimulus,presented,0
+42675,Stimulus,presented,6
+48140,stderr,received,'Traceback (most recent call last):'
+48140,stderr,received,'  File "/Users/nellakrzysztofik/Documents/Sorbonne/NCIA/Semester_1/experimental_approach/programming/cogsup-prog/Week-4/Exercises/drawing_functions.py", line 62, in <module>'
+48141,stderr,received,'    t0 = t1'
+48142,stderr,received,'    ^^^^^^^^'
+48142,stderr,received,'  File "/Users/nellakrzysztofik/Documents/Sorbonne/NCIA/Semester_1/experimental_approach/programming/cogsup-prog/Week-4/Exercises/drawing_functions.py", line 39, in present_for'
+48142,stderr,received,'    exp = design.Experiment()'
+48143,stderr,received,'        ^^^^^^^^^^^^^^^^^^^^^^'
+48143,stderr,received,'  File "/Users/nellakrzysztofik/miniconda3/envs/cogsup-prog/lib/python3.12/site-packages/expyriment/misc/_clock.py", line 154, in wait'
+48143,stderr,received,'    pygame.event.pump()'
+48143,stderr,received,'KeyboardInterrupt'

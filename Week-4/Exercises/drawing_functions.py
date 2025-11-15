@@ -1,16 +1,35 @@
-from expyriment import design, control, stimuli
+from expyriment import design, control, stimuli, misc
 import random
+import math
+
+FPS  = 60
+MSPF = 1000 / FPS
+
+def to_frames(t_ms):
+    return math.ceil(t_ms / MSPF)
+
+def to_time(num_frames):
+    return num_frames * MSPF
 
 def load(stims):
-    pass
+    for stim in stims:
+        stim.preload()
 
 def timed_draw(stims):
-    pass
-    # return the time it took to draw
+    clk = misc.Clock()
+    t0 = clk.time
+    last = len(stims) - 1
+    for i, stim in enumerate(stims):
+        stim.present(clear=(i == 0), update=(i == last))
+    return clk.time - t0  
 
-def present_for(stims, t=1000):
-    pass
-
+def present_for(stims, num_frames):
+    if num_frames <= 0:
+        return
+    target_ms = to_time(num_frames)
+    dt = timed_draw(stims)
+    clk = misc.Clock()
+    clk.wait(max(0, target_ms - dt))
 
 """ Test functions """
 exp = design.Experiment()
