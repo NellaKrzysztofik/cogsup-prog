@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+
+    <script src="https://unpkg.com/jspsych@7.3.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+    <link href="https://unpkg.com/jspsych@7.3.3/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+  </head>
+  <body></body>
+  <script>
+
+  const jsPsych = initJsPsych({
+    on_finish: function(){
+      jsPsych.data.get().localSave("csv", "demo_jspsych_results.csv");
+    }
+  });
+
+  var timeline = [];
+
+  var instructions = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: '<p>Stroop test</p>',
+    post_trial_gap: 2000
+  };
+
+  var stroop_stimuli = [
+    { stimulus: "<p style='color:red;font-size:60pt;'>RED</p>",
+      word: "red",
+      color: "red",
+      congruency: "Congruent",
+      correct_response: 'r'
+    },
+    { stimulus: "<p style='color:green;font-size:60pt;'>RED</p>",
+      word: "red",
+      color: "green",
+      congruency: "Incongruent",
+      correct_response: 'g'
+    }
+    ];
+
+  var fixation = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: '<div style="font-size:60px;">+</div>',
+    choices: "NO_KEYS",
+    trial_duration: 500,
+    data: {task: 'fixation'}
+  };
+
+  const blankTrial = {
+    type:jsPsychHtmlKeyboardResponse,
+    stimulus: "",
+    trial_duration: 300,      
+    choices: 'NO_KEYS',
+    };
+
+  var display_stroop_item = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: jsPsych.timelineVariable('stimulus'),
+    choices: ['r', 'g'],
+    data: {
+      task: 'stroop',
+      correct_response: jsPsych.timelineVariable('correct_response'),
+      word: jsPsych.timelineVariable('word'),
+      color: jsPsych.timelineVariable('color'),
+      congruency: jsPsych.timelineVariable('congruency'),
+    },
+    on_finish: function(data){
+      data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
+    }
+  };
+
+  var stroop_procedure = {
+    timeline: [blankTrial, fixation, display_stroop_item],
+    timeline_variables: stroop_stimuli,
+    randomize_order: true,
+    repetitions: 5
+  };
+
+  timeline.push(instructions);
+  timeline.push(stroop_procedure);
+
+  jsPsych.run(timeline);
+
+  </script>
+</html>

@@ -1,21 +1,23 @@
 # Session 2: Introduction to Expyriment
 
 ## Table of Contents
-- [Preliminaries](#preliminaries)
-- [First expyriment script](#first-expyriment-script)
-- [Session 2: Exercises](#sesssion-2-exercises)
-    - [Exercise 1: Superimposed objects](#exercise-1-superimposed-objects)
-    - [Exercise 2: Side-by-side objects](#exercise-2-side-by-side-objects)
-    - [Exercise 3: Causal perception](#exercise-3-causal-perception)
-        - [3A: Michottean launching](#3a-michottean-launching)
-        - [3B: Disrupting the causal perception via a temporal gap](#3b-disrupting-the-causal-perception-via-a-temporal-gap)
-        - [3C: Disrupting the causal perception via a spatial gap](#3c-disrupting-the-causal-perception-via-a-spatial-gap)
-        - [3D: From launching to triggering](#3d-from-launching-to-triggering)
-        - [3E: Launching function](#3e-launching-function)
-        - [3F: Optional challenge](#3f-optional-challenge)
-    - [Exercise 4: Labeled shapes](#exercise-4-labeled-shapes)
-        - [4A: Triangle and hexagon](#4a-triangle-and-hexagon)
-        - [4B: Polygon function](#4b-polygon-function)
+- [Session 2: Introduction to Expyriment](#session-2-introduction-to-expyriment)
+  - [Table of Contents](#table-of-contents)
+  - [Preliminaries](#preliminaries)
+  - [First expyriment script](#first-expyriment-script)
+- [Sesssion 2: Exercises](#sesssion-2-exercises)
+  - [Exercise 1: Superimposed objects](#exercise-1-superimposed-objects)
+  - [Exercise 2: Side-by-side objects](#exercise-2-side-by-side-objects)
+  - [Exercise 3: Causal perception](#exercise-3-causal-perception)
+    - [3A: Michottean launching](#3a-michottean-launching)
+    - [3B: Disrupting the causal perception via a temporal delay](#3b-disrupting-the-causal-perception-via-a-temporal-delay)
+    - [3C: Disrupting the causal perception via a spatial gap](#3c-disrupting-the-causal-perception-via-a-spatial-gap)
+    - [3D: From launching to triggering](#3d-from-launching-to-triggering)
+    - [3E: Launching function](#3e-launching-function)
+    - [3F: Optional challenge](#3f-optional-challenge)
+  - [Exercise 4: Labeled shapes](#exercise-4-labeled-shapes)
+    - [4A: Triangle and hexagon](#4a-triangle-and-hexagon)
+    - [4B: Polygon function](#4b-polygon-function)
 
 ## Preliminaries
 First, update the Materials folder on your computer with the latest version of our repository. **Make sure to change ```your-path``` to the correct path!**
