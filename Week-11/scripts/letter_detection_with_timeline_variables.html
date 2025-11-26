@@ -7,25 +7,13 @@
     <link href="https://unpkg.com/jspsych@8.0.2/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
+
   <script type="text/javascript">
-    const NUMBER_OF_TRIALS_PER_KEY = 3;
+    const NUMBER_OF_TRIALS_PER_KEY = 10;
     const KEYS = ['F', 'J'];
-    const BLANK_DURATION = 30 // ms;
-    
-    function createShuffledListOfTrials(keys, trialsPerKey){
-      let possibleTrials = [];
-
-      for (let k = 0; k < keys.length; k += 1){
-        possibleTrials.push({
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus: keys[k],
-          choices: keys
-        });
-      }
-
-      return jsPsych.randomization.repeat(possibleTrials, trialsPerKey);
-    }
+    const BLANK_DURATION = 50 // ms;
   </script>
+
   <script type="text/javascript">
     const jsPsych = initJsPsych({
       on_finish: function(){
@@ -46,31 +34,28 @@
         `
     };
 
-    const blankTrial = {
-      type:jsPsychHtmlKeyboardResponse,
-      stimulus: "",
-      trial_duration: BLANK_DURATION,
-      choices: [],
-    };
-
-    var fixation = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<div style="font-size:60px;">+</div>',
-      choices: "NO_KEYS",
-      trial_duration: 500,
-      data: {task: 'fixation'}
-    };
-
-    let trials = createShuffledListOfTrials(KEYS, NUMBER_OF_TRIALS_PER_KEY);
-
     let timeline = [helloTrial];
 
-    for (let trial of trials){
+    let stimulusDisplayTrial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: jsPsych.timelineVariable("targetKey"),
+    };
 
-      timeline.push(fixation);
-      timeline.push(trial);
-      timeline.push(blankTrial)
+    let targetKeyVariableList = [];
+    for (let key of KEYS){
+      targetKeyVariableList.push({targetKey: key})
     }
+
+    timeline.push({
+      timeline:  [stimulusDisplayTrial],
+      timeline_variables: targetKeyVariableList,
+      // You can put common parameters here
+      choices: KEYS,
+      post_trial_gap: BLANK_DURATION,
+      // Randomize order and repeat
+      randomize_order: true,
+      repetitions: NUMBER_OF_TRIALS_PER_KEY,
+    })
 
     jsPsych.run(timeline);
   </script>

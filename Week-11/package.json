@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@jspsych/plugin-html-slider-response": "^2.1.0"
+  }
+}

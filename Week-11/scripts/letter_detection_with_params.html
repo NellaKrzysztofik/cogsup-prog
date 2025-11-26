@@ -7,25 +7,46 @@
     <link href="https://unpkg.com/jspsych@8.0.2/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
+
   <script type="text/javascript">
-    const NUMBER_OF_TRIALS_PER_KEY = 3;
+    const NUMBER_OF_TRIALS_PER_KEY = 10;
     const KEYS = ['F', 'J'];
-    const BLANK_DURATION = 30 // ms;
-    
-    function createShuffledListOfTrials(keys, trialsPerKey){
+    const BLANK_DURATION = 50 // ms;
+
+    // We add a lower case factor in our design
+    function createKeyPressTrial(targetKey, lowerCase, keys, blankDuration){
+      let stimulusDisplayTrial = {
+        type: jsPsychHtmlKeyboardResponse,
+        // Equivalent to if x then y else z
+        stimulus: lowerCase ? targetKey.toLocaleLowerCase() : targetKey.toUpperCase();
+        choices: keys,
+        post_trial_gap: blankDuration,
+        stimulus_duration: 1000,
+        data: {
+          lowerCase: lowerCase,
+          targetKey: targetKey
+        }
+      }
+
+      return {
+        timeline:  [stimulusDisplayTrial]
+      }
+    }
+
+    function createShuffledListOfTrials(keys, trialsPerKey, blankDuration){
       let possibleTrials = [];
 
       for (let k = 0; k < keys.length; k += 1){
-        possibleTrials.push({
-          type: jsPsychHtmlKeyboardResponse,
-          stimulus: keys[k],
-          choices: keys
-        });
+        // We counter balance upper and lower case
+        for (let lowerCase of [true, false]){
+          possibleTrials.push(createKeyPressTrial(keys[k], lowerCase, keys, blankDuration));
+        }
       }
 
       return jsPsych.randomization.repeat(possibleTrials, trialsPerKey);
     }
   </script>
+
   <script type="text/javascript">
     const jsPsych = initJsPsych({
       on_finish: function(){
@@ -46,30 +67,13 @@
         `
     };
 
-    const blankTrial = {
-      type:jsPsychHtmlKeyboardResponse,
-      stimulus: "",
-      trial_duration: BLANK_DURATION,
-      choices: [],
-    };
-
-    var fixation = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<div style="font-size:60px;">+</div>',
-      choices: "NO_KEYS",
-      trial_duration: 500,
-      data: {task: 'fixation'}
-    };
-
-    let trials = createShuffledListOfTrials(KEYS, NUMBER_OF_TRIALS_PER_KEY);
+    let trials = createShuffledListOfTrials(KEYS, NUMBER_OF_TRIALS_PER_KEY, BLANK_DURATION);
 
     let timeline = [helloTrial];
 
+    // Because we nested blank screen after the trial, even after order randomiztion the two will be in succession.
     for (let trial of trials){
-
-      timeline.push(fixation);
       timeline.push(trial);
-      timeline.push(blankTrial)
     }
 
     jsPsych.run(timeline);

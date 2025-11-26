@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="https://unpkg.com/jspsych@8.0.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-slider-response@2.0.0"></script>
+    <link href="https://unpkg.com/jspsych@8.0.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+
+  <script type="text/javascript">
+    const NUMBER_OF_TRIALS_PER_KEY = 10;
+    const KEYS = ['F', 'J'];
+    const BLANK_DURATION = 50; // ms
+  </script>
+
+  <script type="text/javascript">
+    const jsPsych = initJsPsych({
+      on_finish: function(){
+        jsPsych.data.get().localSave("csv", "demo_jspsych_results.csv");
+        document.body.innerHTML = "Thank you!";
+      }
+    });
+
+    const helloTrial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <p>Hello!</p>
+        <p>You will be taking part in a toy experiment.
+          You will see one of two letters displayed on the screen (${KEYS[0]} or ${KEYS[1]}).</p>
+        <p> Your role will be to press the key corresponding to the letter.
+          <b>Please answer as fast as you can!</b></p>
+        <p>Press any key to continue.</p>
+        `
+    };
+
+    const fixation = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: "NO_KEYS",
+      trial_duration: 500,
+      data: {task: 'fixation'}
+    };
+
+    const blankTrial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "",
+      trial_duration: BLANK_DURATION,
+      choices: [],
+    };
+
+    // Stimulus trial uses timeline variables (displayKey set in timeline_variables)
+    const stimulusDisplayTrial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: jsPsych.timelineVariable('displayKey'),
+      choices: KEYS.map(k => k.toLowerCase()),
+      stimulus_duration: 1000,
+      post_trial_gap: 250,
+      data: {
+        targetKey: jsPsych.timelineVariable('targetKey'),
+        lowerCase: jsPsych.timelineVariable('lowerCase')
+      }
+    };
+
+    const sliderTrial = {
+      type: jsPsychHtmlSliderResponse,
+      stimulus: '<p>How confident were you in your response?</p>',
+      labels: ['Not at all', 'Very much'],
+      min: 0,
+      max: 100,
+      start: 50,
+      step: 1,
+      slider_width: 300
+    };
+
+    // Build timeline_variables list with both upper- and lower-case displays
+    let timelineVariables = [];
+    for (let key of KEYS){
+      timelineVariables.push({
+        displayKey: key.toUpperCase(),
+        targetKey: key,
+        lowerCase: false
+      });
+      timelineVariables.push({
+        displayKey: key.toLowerCase(),
+        targetKey: key,
+        lowerCase: true
+      });
+    }
+
+    let timeline = [helloTrial];
+
+    // Add a block that repeats and randomizes the timeline variables
+    timeline.push({
+      timeline: [fixation, stimulusDisplayTrial, sliderTrial, blankTrial],
+      timeline_variables: timelineVariables,
+      randomize_order: true,
+      repetitions: NUMBER_OF_TRIALS_PER_KEY
+    });
+
+    jsPsych.run(timeline);
+  </script>
+</html>
